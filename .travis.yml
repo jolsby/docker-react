@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true jolsby/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "Docker7"
+  env: "Docker7-env"
+  bucket_name: "elasticbeanstalk-us-west-2-304275177527"
+  bucket_path: "Docker7"
+  on:
+    branch:  master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
